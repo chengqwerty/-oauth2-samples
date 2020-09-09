@@ -1,3 +1,5 @@
 rootProject.name = 'sample'
 include 'oauth2authorizationserver'
+include 'oauth2client'
+include 'oauth2resourceserver'
 
