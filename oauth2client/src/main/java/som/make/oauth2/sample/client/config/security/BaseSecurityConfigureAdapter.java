@@ -4,6 +4,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import som.make.oauth2.sample.client.config.security.oauth2.AuthorizationCodeTokenResponseClient;
+import som.make.oauth2.sample.client.config.security.oauth2.SomAuthenticationSuccessHandler;
 
 public class BaseSecurityConfigureAdapter extends WebSecurityConfigurerAdapter {
 
@@ -19,11 +20,11 @@ public class BaseSecurityConfigureAdapter extends WebSecurityConfigurerAdapter {
         // http.oauth2Login().defaultSuccessUrl("/base");
         http.authorizeRequests().anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login.html").defaultSuccessUrl("/base")
+                .formLogin().loginPage("/login.html").defaultSuccessUrl("/index.html")
                 .and()
                 .oauth2Login().tokenEndpoint().accessTokenResponseClient(new AuthorizationCodeTokenResponseClient())
                 .and()
-                .defaultSuccessUrl("/base", true);
+                .successHandler(new SomAuthenticationSuccessHandler());
         // http.oauth2Login().userInfoEndpoint().userService(new CustomOAuth2UserService());
         // http.oauth2Client().authorizationCodeGrant().accessTokenResponseClient(new AuthorizationCodeTokenResponseClient());
     }

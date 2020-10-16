@@ -5,6 +5,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -123,25 +124,9 @@ class SecurityConfig {
     }
 
     @Bean
+    @Order(1)
     public WebSecurityConfigurerAdapter webSecurityConfigurerAdapter() {
-
-        return new WebSecurityConfigurerAdapter() {
-            @Override
-            protected void configure(HttpSecurity http) throws Exception {
-                http
-                        .authorizeRequests()
-                        .antMatchers("/get/userInfo").permitAll()
-                        .antMatchers("/.well-known/jwk.json").permitAll()
-                        .anyRequest().authenticated()
-                        .and()
-                        .httpBasic()
-                        .and()
-                        .formLogin()
-                        .and()
-                        .csrf().disable();
-            }
-        };
-
+        return new SecurityConfigurerAdapter();
     }
 
 }
