@@ -23,6 +23,8 @@ public class BaseSecurityConfigureAdapter extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/login.html").defaultSuccessUrl("/index.html")
                 .and()
                 .oauth2Login().tokenEndpoint().accessTokenResponseClient(new AuthorizationCodeTokenResponseClient())
+                // 自定义如何用token从资源服务器中获取userInfo
+                // .and().userInfoEndpoint().userService()
                 .and()
                 .successHandler(new SomAuthenticationSuccessHandler());
         // http.oauth2Login().userInfoEndpoint().userService(new CustomOAuth2UserService());

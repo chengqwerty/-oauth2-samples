@@ -1,27 +1,15 @@
-package som.make.oauth2.sample.resource.config;
+package som.make.oauth2.resource2.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
-import org.springframework.security.core.token.TokenService;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtDecoders;
-import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import java.math.BigInteger;
 import java.security.KeyFactory;
@@ -50,6 +38,7 @@ public class ResourceSeverConfiguration extends ResourceServerConfigurerAdapter 
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         super.configure(resources);
         resources.tokenStore(new JwtTokenStore(accessTokenConverter()));
+        // resources.tokenServices(new RemoteTokenServices());
     }
 
     public void configure(HttpSecurity http) throws Exception {

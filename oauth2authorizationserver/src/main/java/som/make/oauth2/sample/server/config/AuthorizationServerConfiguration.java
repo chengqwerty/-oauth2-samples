@@ -60,7 +60,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .secret("{noop}Tr1iNoYTf6D14bZdsAeh95Sm")
                 .scopes("resource:read")
                 .authorizedGrantTypes("authorization_code")
-                .redirectUris("http://127.0.0.1:8081/login/oauth2/code/make")
+                .redirectUris("http://127.0.0.1:8081/client/login/oauth2/code/make")
                 .and()
                 .withClient("reader")
                 .authorizedGrantTypes("password")
