@@ -4,4 +4,6 @@ include 'oauth2client'
 include 'oauth2resourceserver'
 include 'resource2'
 include 'resource3'
+include 'cluster-password:cluster-password-authorization'
+findProject(':cluster-password:cluster-password-authorization')?.name = 'cluster-password-authorization'
 
